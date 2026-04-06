@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Enterprise Gym | Registration</title>
+  <link rel="icon" type="image/jpeg" href="ap.JPG">
+  <link rel="shortcut icon" type="image/jpeg" href="ap.JPG">
+  <link rel="apple-touch-icon" href="ap.JPG">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: rgba(17, 17, 17, 0.88);
+      --surface-strong: rgba(10, 10, 10, 0.96);
+      --card: rgba(20, 20, 20, 0.94);
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f6f3ef;
+      --muted: #b6aca4;
+      --red: #ff2323;
+      --red-soft: rgba(255, 35, 35, 0.18);
+      --red-glow: rgba(255, 35, 35, 0.4);
+      --gold: #ffcf70;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Outfit", sans-serif;
+      font-size: 16px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 35, 35, 0.12), transparent 24%),
+        linear-gradient(180deg, #0c0c0c 0%, #050505 55%, #090909 100%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.35), transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(1040px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .content-stack {
+      display: grid;
+      gap: 10px;
+      justify-items: start;
+    }
+
+    .topbar {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-text strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-text small {
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .top-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid rgba(255, 35, 35, 0.35);
+      background: rgba(255, 35, 35, 0.08);
+      color: #ffd6d6;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff4a4a, #e10000 75%);
+      box-shadow: 0 16px 40px rgba(255, 35, 35, 0.28);
+      color: white;
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 28px 0 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .pricing-card,
+    .form-card,
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy {
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: 0;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -50px;
+      top: -70px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,35,35,0.4), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+      margin-bottom: 14px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 4rem);
+      margin-bottom: 12px;
+      max-width: 12ch;
+    }
+
+    .accent {
+      color: var(--red);
+      text-shadow: 0 0 24px rgba(255, 35, 35, 0.28);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      max-width: 60ch;
+      color: #e6dad1;
+      line-height: 1.72;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 18px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.55rem;
+      color: white;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-panel {
+      display: none;
+    }
+
+    .visual-card {
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 20% 20%, rgba(255, 35, 35, 0.42), transparent 32%),
+        linear-gradient(135deg, #131313 0%, #060606 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+
+    .visual-lines {
+      position: absolute;
+      inset: auto -30px 28px auto;
+      width: 220px;
+      height: 220px;
+      background:
+        linear-gradient(135deg, transparent 25%, rgba(255,35,35,0.8) 25%, rgba(255,35,35,0.8) 32%, transparent 32%),
+        linear-gradient(135deg, transparent 42%, rgba(255,35,35,0.55) 42%, rgba(255,35,35,0.55) 49%, transparent 49%);
+      opacity: 0.85;
+      transform: rotate(-8deg);
+    }
+
+    .visual-title {
+      position: relative;
+      z-index: 1;
+    }
+
+    .visual-title strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(3.2rem, 8vw, 4.7rem);
+      text-transform: uppercase;
+      line-height: 0.9;
+    }
+
+    .visual-title span {
+      display: block;
+      margin-top: 14px;
+      max-width: 22ch;
+      font-size: 1rem;
+      color: #e5d6cb;
+      line-height: 1.6;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--red-soft);
+      border: 1px solid rgba(255,35,35,0.35);
+      color: white;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.96rem;
+    }
+
+    .feature-item span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 10px 0 20px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+    }
+
+    .section-heading p {
+      max-width: 48ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pricing-card {
+      padding: 20px;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+
+    .pricing-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+
+    .price-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .price-row span {
+      color: #e9ddd4;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.88rem;
+    }
+
+    .price-row strong {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.55rem;
+      color: white;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .form-card,
+    .info-card {
+      padding: 20px;
+    }
+
+    .form-card h3,
+    .info-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .form-card > p,
+    .info-card > p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.68;
+      margin-bottom: 16px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      color: #cfc0b7;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255, 35, 35, 0.7);
+      box-shadow: 0 0 0 4px rgba(255, 35, 35, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .field select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-right: 52px;
+      background-color: rgba(255,255,255,0.05);
+      background-image:
+        linear-gradient(45deg, transparent 50%, #ff6a6a 50%),
+        linear-gradient(135deg, #ff6a6a 50%, transparent 50%),
+        linear-gradient(135deg, rgba(255, 35, 35, 0.18), rgba(255, 35, 35, 0.06));
+      background-position:
+        calc(100% - 22px) calc(50% - 4px),
+        calc(100% - 15px) calc(50% - 4px),
+        calc(100% - 44px) 50%;
+      background-size: 7px 7px, 7px 7px, 30px 30px;
+      background-repeat: no-repeat;
+      border-color: rgba(255, 85, 85, 0.25);
+      color: #fff4f4;
+      box-shadow: inset 0 0 0 1px rgba(255, 35, 35, 0.08);
+    }
+
+    .field select:hover {
+      border-color: rgba(255, 85, 85, 0.45);
+      background-color: rgba(255,255,255,0.07);
+    }
+
+    .field select option {
+      background: #161616;
+      color: #fff4f4;
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .summary-box,
+    .offer-box,
+    .contact-box,
+    .status-box {
+      padding: 16px 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.035);
+    }
+
+    .summary-box {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #e5d8cf;
+    }
+
+    .summary-row strong {
+      color: white;
+    }
+
+    .summary-total {
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 1.15rem;
+    }
+
+    .offer-box {
+      border-color: rgba(255, 35, 35, 0.25);
+      background: linear-gradient(135deg, rgba(255,35,35,0.16), rgba(255,35,35,0.04));
+      margin-bottom: 12px;
+    }
+
+    .status-box {
+      display: none;
+      margin-top: 6px;
+      color: #eadcd2;
+      font-size: 1rem;
+      line-height: 1.68;
+    }
+
+    .status-box.show {
+      display: block;
+    }
+
+    .status-box.error {
+      border-color: rgba(255, 140, 140, 0.35);
+      background: rgba(255, 95, 95, 0.08);
+    }
+
+    .status-box.success {
+      border-color: rgba(117, 255, 163, 0.35);
+      background: rgba(71, 214, 115, 0.08);
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .offer-box strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.45rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .offer-box p,
+    .contact-box p {
+      color: #eadcd2;
+      line-height: 1.55;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contact-item {
+      display: grid;
+      gap: 4px;
+      padding-left: 12px;
+      border-left: 2px solid rgba(255, 35, 35, 0.35);
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+    }
+
+    .contact-item strong {
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .footnote {
+      padding: 12px 0 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .pricing-grid,
+      .form-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .topbar {
+        position: static;
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+      }
+
+      .top-cta {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100%, calc(100% - 20px));
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand {
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: 58px;
+        height: 58px;
+      }
+
+      .top-cta {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 16px;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .pricing-card,
+      .form-card,
+      .info-card {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+        max-width: none;
+      }
+
+      .lead,
+      .section-heading p,
+      .pricing-card p,
+      .form-card > p,
+      .info-card > p,
+      .offer-box p,
+      .contact-box p {
+        font-size: 1rem;
+      }
+
+      .action-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .button-row {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .price-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .stat {
+        padding: 12px 10px;
+      }
+
+      .stat strong {
+        font-size: 1.3rem;
+      }
+
+      .stat span {
+        font-size: 0.78rem;
+      }
+
+      .pricing-card {
+        padding: 16px;
+      }
+
+      .pricing-card h3 {
+        font-size: 1.45rem;
+      }
+
+      .pricing-card p {
+        font-size: 0.94rem;
+      }
+
+      .price-row strong {
+        font-size: 1.35rem;
+      }
+
+      .price-row span {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">
+          <img class="brand-logo" src="ap.JPG" alt="AP Enterprise Gym logo">
+          <div class="brand-text">
+            <strong>AP Enterprise Gym</strong>
+            <small>Build Strength. Transform Yourself.</small>
+          </div>
+        </div>
+        <div class="top-cta">
+          <div class="pill">1 Day Free Trial</div>
+          <div class="pill">First 15 Members: Registration Fee Free</div>
+          <a class="btn btn-primary" href="#register">Register Now</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="content-stack">
+              <div class="eyebrow">Quick Registration</div>
+              <h1>Join <span class="accent">AP Enterprise Gym</span></h1>
+              <p class="lead">
+                Register quickly, choose your plan, and claim the opening offer. The first 15 members get free registration, and every new member can book a 1 day free trial.
+              </p>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>15</strong>
+                <span>Free registration slots</span>
+              </div>
+              <div class="stat">
+                <strong>1 Day</strong>
+                <span>Free trial available</span>
+              </div>
+              <div class="stat">
+                <strong>2 Plans</strong>
+                <span>Student and general</span>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <a class="btn btn-primary" href="#register">Start Registration</a>
+              <a class="btn btn-secondary" href="#pricing">View Fees</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-heading">
+            <div class="content-stack">
+              <div class="eyebrow">Fee Structure</div>
+              <h2>Membership Plans</h2>
+            </div>
+            <p>
+              Transparent pricing for students and general members. Your selected plan updates automatically in the registration form below.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="pricing-card">
+              <div class="eyebrow">Student</div>
+              <h3>Student Plan</h3>
+              <p>Affordable plans for students who want consistent training.</p>
+              <div class="price-list">
+                <div class="price-row">
+                  <span>Monthly</span>
+                  <strong>&#8377;699</strong>
+                </div>
+                <div class="price-row">
+                  <span>3 Months</span>
+                  <strong>&#8377;1,899</strong>
+                </div>
+                <div class="price-row">
+                  <span>Annual</span>
+                  <strong>&#8377;5,999</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="pricing-card">
+              <div class="eyebrow">General</div>
+              <h3>General Plan</h3>
+              <p>Simple flexible plans for regular members and long-term fitness goals.</p>
+              <div class="price-list">
+                <div class="price-row">
+                  <span>Monthly</span>
+                  <strong>&#8377;899</strong>
+                </div>
+                <div class="price-row">
+                  <span>3 Months</span>
+                  <strong>&#8377;2,499</strong>
+                </div>
+                <div class="price-row">
+                  <span>Annual</span>
+                  <strong>&#8377;7,999</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="register">
+        <div class="container form-wrap">
+          <article class="form-card">
+            <div class="content-stack">
+              <div class="eyebrow">Registration Form</div>
+              <h3>Reserve Your Spot</h3>
+            </div>
+            <p>Fill in your details, choose your category and plan, and the fee summary will update instantly.</p>
+
+            <form id="registrationForm">
+              <div class="field-grid">
+                <div class="field">
+                  <label for="fullName">Full Name</label>
+                  <input id="fullName" type="text" placeholder="Enter your full name" required>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" type="tel" placeholder="Enter your phone number" required>
+                </div>
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label for="memberType">Member Type</label>
+                  <select id="memberType">
+                    <option value="student">Student</option>
+                    <option value="general">General</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="planType">Plan Duration</label>
+                  <select id="planType">
+                    <option value="monthly">Monthly</option>
+                    <option value="3months">3 Months</option>
+                    <option value="annual">Annual</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="summary-box" aria-live="polite">
+                <div class="summary-row">
+                  <span>Selected Category</span>
+                  <strong id="summaryType">Student</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Selected Plan</span>
+                  <strong id="summaryPlan">Monthly</strong>
+                </div>
+                <div class="summary-row">
+                  <span>Registration Offer</span>
+                  <strong>Free for first 15 members</strong>
+                </div>
+                <div class="summary-row summary-total">
+                  <span>Membership Fee</span>
+                  <strong id="summaryFee">&#8377;699</strong>
+                </div>
+              </div>
+
+              <div class="button-row">
+                <button class="btn btn-primary" type="button" id="registerButton">Submit Registration</button>
+                <button class="btn btn-secondary" type="button" id="trialButton">Book 1 Day Free Trial</button>
+              </div>
+
+              <div class="status-box" id="formStatus" aria-live="polite"></div>
+            </form>
+
+            <iframe name="sheetSubmitFrame" id="sheetSubmitFrame" title="Google Sheet Submission" style="display:none;"></iframe>
+            <form id="sheetForm" action="https://script.google.com/macros/s/AKfycby95MAvkHbK-IMqBShpCs-EtFxrqk9h-tXfLcAgnz_5egDmnpItBhYPoBN9J5JkC_w/exec" method="GET" target="sheetSubmitFrame" style="display:none;">
+              <input type="hidden" name="timestamp" id="sheetTimestamp">
+              <input type="hidden" name="actionType" id="sheetActionType">
+              <input type="hidden" name="fullName" id="sheetFullName">
+              <input type="hidden" name="phone" id="sheetPhone">
+              <input type="hidden" name="memberType" id="sheetMemberType">
+              <input type="hidden" name="planType" id="sheetPlanType">
+              <input type="hidden" name="membershipFee" id="sheetMembershipFee">
+            </form>
+          </article>
+
+          <aside class="info-card">
+            <div class="offer-box">
+              <strong>Opening Offer</strong>
+              <p>
+                Enjoy a one day free trial and grab the early bird benefit: the first 15 members get registration fee free.
+                Limited slots only.
+              </p>
+            </div>
+
+            <div class="contact-box">
+              <div class="content-stack">
+                <div class="eyebrow">Gym Details</div>
+                <h3>Visit AP Enterprise Gym</h3>
+              </div>
+              <p>Train in a bold, high-energy gym atmosphere designed to keep you focused from day one.</p>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <span>Location</span>
+                  <strong>Tadubi Bazaar, Dohu Colony, Near Old Petrol Pump, Senapati District, Manipur - 795104</strong>
+                </div>
+                <div class="contact-item">
+                  <span>Contact</span>
+                  <strong><a href="tel:+918810699710">+91-8810699710</a></strong>
+                </div>
+                <div class="contact-item">
+                  <span>Special Note</span>
+                  <strong>Best time to register is early so you can claim the free registration offer before all 15 slots are filled.</strong>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footnote">
+      AP Enterprise Gym Registration Page
+    </footer>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby95MAvkHbK-IMqBShpCs-EtFxrqk9h-tXfLcAgnz_5egDmnpItBhYPoBN9J5JkC_w/exec";
+
+    const pricing = {
+      student: {
+        monthly: 699,
+        "3months": 1899,
+        annual: 5999
+      },
+      general: {
+        monthly: 899,
+        "3months": 2499,
+        annual: 7999
+      }
+    };
+
+    const memberType = document.getElementById("memberType");
+    const planType = document.getElementById("planType");
+    const summaryType = document.getElementById("summaryType");
+    const summaryPlan = document.getElementById("summaryPlan");
+    const summaryFee = document.getElementById("summaryFee");
+    const registrationForm = document.getElementById("registrationForm");
+    const sheetForm = document.getElementById("sheetForm");
+    const sheetSubmitFrame = document.getElementById("sheetSubmitFrame");
+    const registerButton = document.getElementById("registerButton");
+    const trialButton = document.getElementById("trialButton");
+    const formStatus = document.getElementById("formStatus");
+    let pendingActionType = "";
+    let waitingForSheetResponse = false;
+
+    const planLabels = {
+      monthly: "Monthly",
+      "3months": "3 Months",
+      annual: "Annual"
+    };
+
+    function updateSummary() {
+      const type = memberType.value;
+      const plan = planType.value;
+      const amount = pricing[type][plan];
+
+      summaryType.textContent = type === "student" ? "Student" : "General";
+      summaryPlan.textContent = planLabels[plan];
+      summaryFee.textContent = "\u20B9" + amount.toLocaleString("en-IN");
+    }
+
+    function showStatus(message, kind) {
+      formStatus.textContent = message;
+      formStatus.className = "status-box show " + kind;
+    }
+
+    function setSubmitting(isSubmitting, activeButton) {
+      registerButton.disabled = isSubmitting;
+      trialButton.disabled = isSubmitting;
+
+      registerButton.textContent = isSubmitting && activeButton === "registration"
+        ? "Submitting Registration..."
+        : "Submit Registration";
+
+      trialButton.textContent = isSubmitting && activeButton === "trial"
+        ? "Booking Free Trial..."
+        : "Book 1 Day Free Trial";
+    }
+
+    function resetFormToDefaults() {
+      registrationForm.reset();
+      memberType.value = "student";
+      planType.value = "monthly";
+      updateSummary();
+    }
+
+    function getFormPayload(actionType) {
+      const type = memberType.value;
+      const plan = planType.value;
+
+      return {
+        timestamp: new Date().toISOString(),
+        actionType,
+        fullName: document.getElementById("fullName").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        memberType: type === "student" ? "Student" : "General",
+        planType: planLabels[plan],
+        membershipFee: pricing[type][plan]
+      };
+    }
+
+    function validatePayload(payload) {
+      if (!payload.fullName) {
+        return "Please enter your full name.";
+      }
+
+      if (!payload.phone) {
+        return "Please enter your phone number.";
+      }
+
+      return "";
+    }
+
+    async function submitToGoogleSheet(actionType) {
+      const payload = getFormPayload(actionType);
+      const validationMessage = validatePayload(payload);
+
+      if (validationMessage) {
+        showStatus(validationMessage, "error");
+        return;
+      }
+
+      if (GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE")) {
+        showStatus("Add your Google Apps Script web app URL in the file before submissions can be sent to Google Sheets.", "error");
+        return;
+      }
+
+      setSubmitting(true, actionType);
+      showStatus("Sending your details to AP Enterprise Gym...", "success");
+
+      try {
+        document.getElementById("sheetTimestamp").value = payload.timestamp;
+        document.getElementById("sheetActionType").value = payload.actionType;
+        document.getElementById("sheetFullName").value = payload.fullName;
+        document.getElementById("sheetPhone").value = payload.phone;
+        document.getElementById("sheetMemberType").value = payload.memberType;
+        document.getElementById("sheetPlanType").value = payload.planType;
+        document.getElementById("sheetMembershipFee").value = payload.membershipFee;
+
+        pendingActionType = actionType;
+        waitingForSheetResponse = true;
+        sheetForm.submit();
+      } catch (error) {
+        waitingForSheetResponse = false;
+        pendingActionType = "";
+        showStatus("Could not send to Google Sheets right now. Please check the Apps Script URL and deployment settings.", "error");
+        setSubmitting(false, "");
+      }
+    }
+
+    sheetSubmitFrame.addEventListener("load", function () {
+      if (!waitingForSheetResponse) {
+        return;
+      }
+
+      waitingForSheetResponse = false;
+      showStatus(
+        pendingActionType === "trial"
+          ? "Your 1 day free trial request has been sent successfully."
+          : "Your registration has been sent successfully.",
+        "success"
+      );
+      pendingActionType = "";
+      resetFormToDefaults();
+      setSubmitting(false, "");
+    });
+
+    memberType.addEventListener("change", updateSummary);
+    planType.addEventListener("change", updateSummary);
+    registerButton.addEventListener("click", function () {
+      submitToGoogleSheet("registration");
+    });
+    trialButton.addEventListener("click", function () {
+      submitToGoogleSheet("trial");
+    });
+    updateSummary();
+  </script>
+</body>
+</html>
